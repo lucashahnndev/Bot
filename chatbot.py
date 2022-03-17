@@ -3,7 +3,7 @@ import telebot
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
 from datetime import datetime
-CHAVE_API = "5254201935:AAEzbb0X8werYYIngF6mte-d0rvFl83YfDI"
+CHAVE_API = "(preencha sua chave do bot)"
 bot = telebot.TeleBot(CHAVE_API)
 iabot = ChatBot("Sophiabot")
 iabot = ChatBot(
