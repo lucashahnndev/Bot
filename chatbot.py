@@ -5,9 +5,8 @@ from chatterbot.trainers import ListTrainer
 from datetime import datetime
 CHAVE_API = "(preencha sua chave do bot)"
 bot = telebot.TeleBot(CHAVE_API)
-iabot = ChatBot("Sophiabot")
 iabot = ChatBot(
-    "Sophiabot",
+    "Escoha um nome para seu bot",
     logic_adapters=[
         'chatterbot.logic.BestMatch'
     ],
@@ -19,7 +18,7 @@ iabot = ChatBot(
 data_e_hora = datetime.now()
 str_hora = data_e_hora.strftime("%H")
 
-if str_hora > '0' and str_hora < '07' :
+if str_hora > '0' and str_hora < '07':
     turno = 'Madrugada'
     saudacao = 'Boa noite'
 
@@ -49,22 +48,22 @@ conversa.train([
 ])
 
 saudacoes = [
-    'fOlá',
-    'folá',
-    'fola',
-    'fOI',
-    'fOi',
-    'foi',
-    'feae',
-    'fBom dia',
-    'fBOM DIA',
-    'fbom dia',
-    'fBoa tarde',
-    'fBOA TARDE',
-    'fboa tarde',
-    'fBoa noite',
-    'fBOA NOITE',
-    'fboa noite',
+    'Olá',
+    'olá',
+    'ola',
+    'OI',
+    'Oi',
+    'oi',
+    'eae',
+    'Bom dia',
+    'BOM DIA',
+    'bom dia',
+    'Boa tarde',
+    'BOA TARDE',
+    'boa tarde',
+    'Boa noite',
+    'BOA NOITE',
+    'boa noite',
 ]
 
 
@@ -86,11 +85,11 @@ def verificar(mensagem):
 @bot.message_handler(func=verificar)
 def responder(mensagem):
     resposta = iabot.get_response(mensagem.text)
-    # if float(resposta.confidence) > 0.5:
-    #bot.send_message(mensagem.chat.id, mensagem.from_user.first_name)
-    bot.send_message(mensagem.chat.id, resposta)
-    # else:
-    #bot.send_message(mensagem.chat.id, "Não entedi :( Conte me mais")
+    if float(resposta.confidence) > 0.5:
+        bot.send_message(mensagem.chat.id, mensagem.from_user.first_name)
+        bot.send_message(mensagem.chat.id, resposta)
+    else:
+        bot.send_message(mensagem.chat.id, "Não entedi :( Conte me mais")
 
 
 bot.polling()
